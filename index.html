@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SSO demo</title>
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+            html {
+                font-size: 16px;
+            }
+            body {
+                min-height: 100vh;
+                margin: 0;
+                display: flex;
+            }
+            button {
+                cursor: pointer;
+            }
+            .container {
+                max-width: calc(1440px + 1.25rem);
+                width: 100%;
+                padding-inline: 1.25rem;
+                margin-inline: auto;
+            }
+            .grid {
+                display: grid;
+                grid-template: min-content 1fr / 200px 1fr 200px;
+                gap: 20px;
+                padding-block: 20px;
+                flex: 1;
+            }
+            .grid > * {
+                padding: 20px 30px;
+            }
+            .header {
+                background-color: #2ecc71;
+                grid-column: 1 / -1;
+                padding-block: 40px;
+            }
+            .aside {
+                background-color: #9b59b6;
+            }
+            .main {
+                background-color: #95a5a6;
+            }
+            .article {
+                background-color: #e67e22;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container grid">
+            <header class="header"></header>
+            <aside class="aside"></aside>
+            <main class="main YOUR_AWESOME_SELECTOR"></main>
+            <article class="article">
+                <button id="btnLogin">Log in</button>
+            </article>
+        </div>
+
+        <script>
+            const YOUR_AWESOME_SELECTOR = '.YOUR_AWESOME_SELECTOR';
+
+            document.querySelector('#btnLogin').addEventListener('click', () => {
+                fetch('https://app-qa.1worldonline.biz/sso/token', {
+                    headers: {
+                        Apikey: '45a3f4a4-7603-448c-b891-4a206e7fdc2b',
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'POST',
+                    body: JSON.stringify({
+                        idendity: 'a9sdf9easfasfasdf',
+                        email: 'andrew0901@mailinator.com',
+                    }),
+                })
+                    .then((res) => res.json())
+                    .then(({ token: YOUR_TOKEN }) => {
+                        const container = document.createElement('div');
+                        container.id = '1WOLPWID';
+                        container.dataset.loyaltyWidgetId = 'bdae932e-b304-4ab7-b41e-8c2010982191';
+                        container.dataset.token = YOUR_TOKEN;
+                        const script = document.createElement('script');
+                        script.defer = true;
+                        script.src = 'https://loyalty-qa-ecs.1worldonline.biz/widget-constructor.js';
+                        document
+                            .querySelector(YOUR_AWESOME_SELECTOR)
+                            .insertAdjacentElement('afterbegin', container);
+                        document.body.insertAdjacentElement('afterbegin', script);
+                    });
+            });
+        </script>
+    </body>
+</html>
