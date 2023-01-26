@@ -58,42 +58,13 @@
         <div class="container grid">
             <header class="header"></header>
             <aside class="aside"></aside>
-            <main class="main YOUR_AWESOME_SELECTOR"></main>
+            <main class="main">
+                <div data-owo-type="widget" data-owo-code="7415b4b2-6701-4ddb-9226-b892dd0404a7" data-owo-mode="trivia"></div>
+                <script src="//frontend-qa.1worldonline.biz/poller-constructor.js?ncu={{CLICK_URL_ESC}}" type="text/javascript" async></script>
+            </main>
             <article class="article">
                 <button id="btnLogin">Log in</button>
             </article>
         </div>
-
-        <script>
-            const YOUR_AWESOME_SELECTOR = '.YOUR_AWESOME_SELECTOR';
-
-            document.querySelector('#btnLogin').addEventListener('click', () => {
-                fetch('https://app-qa.1worldonline.biz/sso/token', {
-                    headers: {
-                        Apikey: '45a3f4a4-7603-448c-b891-4a206e7fdc2b',
-                        'Content-Type': 'application/json',
-                    },
-                    method: 'POST',
-                    body: JSON.stringify({
-                        idendity: 'a9sdf9easfasfasdf',
-                        email: 'andrew0901@mailinator.com',
-                    }),
-                })
-                    .then((res) => res.json())
-                    .then(({ token: YOUR_TOKEN }) => {
-                        const container = document.createElement('div');
-                        container.id = '1WOLPWID';
-                        container.dataset.loyaltyWidgetId = 'bdae932e-b304-4ab7-b41e-8c2010982191';
-                        container.dataset.token = YOUR_TOKEN;
-                        const script = document.createElement('script');
-                        script.defer = true;
-                        script.src = 'https://loyalty-qa-ecs.1worldonline.biz/widget-constructor.js';
-                        document
-                            .querySelector(YOUR_AWESOME_SELECTOR)
-                            .insertAdjacentElement('afterbegin', container);
-                        document.body.insertAdjacentElement('afterbegin', script);
-                    });
-            });
-        </script>
     </body>
 </html>
